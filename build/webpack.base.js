@@ -41,6 +41,10 @@ module.exports = {
           // autoprefixer：决定添加哪些浏览器前缀到css中
           "postcss-loader",
           //   可以拆分上面配置的less和css, 避免让less-loader再去解析css文件
+          //   loader在webpack构建过程中使用的位置是在webpack构建模块依赖关系引入新文件时，
+          //   会根据文件后缀来倒序遍历rules数组，如果文件后缀和test正则匹配到了，
+          //   就会使用该rule中配置的loader依次对文件源代码进行处理，最终拿到处理后的sourceCode结果，
+          //   可以通过避免使用无用的loader解析来提升构建速度，比如使用less-loader解析css文件
           //   "less-loader",
         ],
       },
@@ -106,6 +110,13 @@ module.exports = {
     alias: {
       "@": path.join(__dirname, "../src"),
     },
+    // 使用require和import引入模块时如果有准确的相对或者绝对路径,就会去按路径查询,如果引入的模块没有路径,
+    // 会优先查询node核心模块,如果没有找到会去当前目录下node_modules中寻找,
+    // 如果没有找到会查从父级文件夹查找node_modules,一直查到系统node全局模块。
+
+    // 这样会有两个问题,一个是当前项目没有安装某个依赖,但是上一级目录下node_modules或者全局模块有安装,就也会引入成功,
+    // 但是部署到服务器时可能就会找不到造成报错,另一个问题就是一级一级查询比较消耗时间。可以告诉webpack搜索目录范围,来规避这两个问题
+    modules: [path.resolve(__dirname, "../node_modules")], // 查找第三方模块只在本项目的node_modules中查找
   },
   plugins: [
     new HtmlWebpackPlugin({
