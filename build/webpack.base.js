@@ -20,10 +20,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        use: {
-          loader: "babel-loader",
-        },
+        test: /.(ts|tsx)$/, // 匹配 .ts, .tsx文件
+        // webpack 的 loader 默认在单线程执行,现代电脑一般都有多核cpu,可以借助多核cpu开启多线程loader解析,
+        // 可以极大地提升loader解析的速度,thread-loader就是用来开启多进程解析loader的,
+        // 使用时,需将此 loader 放置在其他 loader 之前。放置在此 loader 之后的 loader 会在一个独立的 worker 池中运行
+        // 由于thread-loader不支持抽离css插件MiniCssExtractPlugin.loader(下面会讲),所以这里只配置了多进程解析js,
+        // 开启多线程也是需要启动时间,大约600ms左右,所以适合规模比较大的项目
+        use: ["thread-loader", "babel-loader"],
       },
       {
         // 从右往左,从下往上的,遇到less文件,使用less-loader解析为css
