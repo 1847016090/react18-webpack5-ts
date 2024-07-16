@@ -4,6 +4,8 @@ import ClassComponent from "@/components/Class";
 import smallImg from "@/assets/imgs/5kb.png";
 import bigImg from "@/assets/imgs/22kb.png";
 
+import { Demo1, Demo2 } from "@/components";
+
 import "@/app.less";
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
       <br />
       <p>非受控组件</p>
       <input type="text" />
+      <Demo1 />
     </>
   );
 }
