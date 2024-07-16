@@ -20,13 +20,6 @@ module.exports = {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         use: {
           loader: "babel-loader",
-          options: {
-            // 预设执行顺序由右往左,所以先处理ts,再处理jsx
-            presets: [
-              "@babel/preset-react", // 处理 JSX 文件
-              "@babel/preset-typescript", // 处理TSX 文件为 JSX
-            ],
-          },
         },
       },
       {
