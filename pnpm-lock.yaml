@@ -24,6 +24,7 @@ specifiers:
   react: ^18.3.1
   react-dom: ^18.3.1
   react-refresh: ^0.14.2
+  speed-measure-webpack-plugin: ^1.5.0
   style-loader: ^4.0.0
   webpack: ^5.93.0
   webpack-cli: ^5.1.4
@@ -56,6 +57,7 @@ devDependencies:
   postcss: 8.4.39
   postcss-loader: 8.1.1_vsqhsiassl3lorp7dycfgxr37q
   react-refresh: 0.14.2
+  speed-measure-webpack-plugin: 1.5.0_webpack@5.93.0
   style-loader: 4.0.0_webpack@5.93.0
   webpack: 5.93.0_webpack-cli@5.1.4
   webpack-cli: 5.1.4_fzgy2xf7er3jgpkz7h7b2vdzhi
@@ -2234,6 +2236,14 @@ packages:
       ansi-styles: 3.2.1
       escape-string-regexp: 1.0.5
       supports-color: 5.5.0
+    dev: true
+
+  /chalk/4.1.2:
+    resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: 4.3.0
+      supports-color: 7.2.0
     dev: true
 
   /chokidar/3.6.0:
@@ -4476,6 +4486,16 @@ packages:
       - supports-color
     dev: true
 
+  /speed-measure-webpack-plugin/1.5.0_webpack@5.93.0:
+    resolution: {integrity: sha512-Re0wX5CtM6gW7bZA64ONOfEPEhwbiSF/vz6e2GvadjuaPrQcHTQdRGsD8+BE7iUOysXH8tIenkPCQBEcspXsNg==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      webpack: ^1 || ^2 || ^3 || ^4 || ^5
+    dependencies:
+      chalk: 4.1.2
+      webpack: 5.93.0_webpack-cli@5.1.4
+    dev: true
+
   /stackframe/1.3.4:
     resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==}
     dev: true
@@ -4553,6 +4573,13 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       has-flag: 3.0.0
+    dev: true
+
+  /supports-color/7.2.0:
+    resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
+    engines: {node: '>=8'}
+    dependencies:
+      has-flag: 4.0.0
     dev: true
 
   /supports-color/8.1.1:
