@@ -43,6 +43,13 @@ module.exports = merge(baseConfig, {
         `${path.join(__dirname, "../src")}/**/*.tsx`,
         path.join(__dirname, "../public/index.html"),
       ]),
+      // 插件本身也提供了一些白名单safelist属性,符合配置规则选择器都不会被删除掉,
+      // 比如使用了组件库antd, purgecss-webpack-plugin插件检测src文件下tsx文件中使用的类名和id时,
+      // 是检测不到在src中使用antd组件的类名的,打包的时候就会把antd的类名都给过滤掉,
+      // 可以配置一下安全选择列表,避免删除antd组件库的前缀ant
+      safelist: {
+        standard: [/^ant-/], // 过滤以ant-开头的类名，哪怕没用到也不删除
+      },
     }),
     new TerserPlugin({
       // 压缩js
