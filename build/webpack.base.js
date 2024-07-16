@@ -11,7 +11,14 @@ module.exports = {
   entry: path.join(__dirname, "../src/index.tsx"), // 入口文件
   // 打包文件出口
   output: {
-    filename: "static/js/[name].js", // 每个输出js的名称
+    //     hash：跟整个项目的构建相关,只要项目里有文件更改,整个项目构建的hash值都会更改,并且全部文件都共用相同的hash值
+    // chunkhash：不同的入口文件进行依赖文件解析、构建对应的chunk,生成对应的哈希值,文件本身修改或者依赖文件修改,chunkhash值会变化
+    // contenthash：每个文件自己单独的 hash 值,文件的改动只会影响自身的 hash 值
+    // 因为js我们在生产环境里会把一些公共库和程序入口文件区分开,单独打包构建,采用chunkhash的方式生成哈希值,
+    // 那么只要我们不改动公共库的代码,就可以保证其哈希值不会受影响,可以继续使用浏览器缓存,所以js适合使用chunkhash。
+
+    // css和图片资源媒体资源一般都是单独存在的,可以采用contenthash,只有文件本身变化后会生成新hash值。
+    filename: "static/js/[name].[chunkhash:8].js", // 每个输出js的名称
     path: path.join(__dirname, "../dist"), // 打包结果输出路径
     clean: true, // webpack4 需要配置 clean-webpack-plugin 来删除 dist 文件,webpack5内置了
     publicPath: "/", // 打包后文件的公共前缀路径
@@ -74,7 +81,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "static/images/[name][ext]", // 文件输出目录和命名
+          filename: "static/images/[name].[contenthash:8][ext]", // 加上[contenthash:8]
         },
       },
       {
@@ -86,7 +93,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "static/fonts/[name][ext]", // 文件输出目录和命名
+          filename: "static/fonts/[name].[contenthash:8][ext]", // 文件输出目录和命名
         },
       },
       {
@@ -98,7 +105,7 @@ module.exports = {
           },
         },
         generator: {
-          filename: "static/media/[name][ext]", // 文件输出目录和命名
+          filename: "static/media/[name].[contenthash:8][ext]", // 文件输出目录和命名
         },
       },
     ],
