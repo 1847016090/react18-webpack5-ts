@@ -1,5 +1,6 @@
 // webpack.base.js
 const path = require("path");
+const webpack = require("webpack");
 
 // 把最终构建好的静态资源都引入到一个html文件中,这样才能在浏览器中运行
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -40,6 +41,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../public/index.html"), // 模板取定义root节点的模板
       inject: true, // 自动注入静态资源
+    }),
+    //需要把process.env.BASE_ENV注入到业务代码里面,就可以通过该环境变量设置对应环境的接口地址和其他数据
+    new webpack.DefinePlugin({
+      "process.env.BASE_ENV": JSON.stringify(process.env.BASE_ENV),
     }),
   ],
 };

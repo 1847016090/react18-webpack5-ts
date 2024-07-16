@@ -4,9 +4,11 @@ specifiers:
   '@babel/core': ^7.24.9
   '@babel/preset-react': ^7.24.7
   '@babel/preset-typescript': ^7.24.7
+  '@types/node': ^20.14.10
   '@types/react': ^18.3.3
   '@types/react-dom': ^18.3.0
   babel-loader: ^9.1.3
+  cross-env: ^7.0.3
   html-webpack-plugin: ^5.6.0
   react: ^18.3.1
   react-dom: ^18.3.1
@@ -23,9 +25,11 @@ devDependencies:
   '@babel/core': 7.24.9
   '@babel/preset-react': 7.24.7_@babel+core@7.24.9
   '@babel/preset-typescript': 7.24.7_@babel+core@7.24.9
+  '@types/node': 20.14.10
   '@types/react': 18.3.3
   '@types/react-dom': 18.3.0
   babel-loader: 9.1.3_ce2ekrksu4bikkggd5ymmdtq6i
+  cross-env: 7.0.3
   html-webpack-plugin: 5.6.0_webpack@5.93.0
   webpack: 5.93.0_webpack-cli@5.1.4
   webpack-cli: 5.1.4_fzgy2xf7er3jgpkz7h7b2vdzhi
@@ -1230,6 +1234,14 @@ packages:
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
+    dev: true
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
     dev: true
 
   /cross-spawn/7.0.3:
