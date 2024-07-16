@@ -16,6 +16,14 @@ const TerserPlugin = require("terser-webpack-plugin");
 // 这个插件是和mini-css-extract-plugin插件配合使用的,在上面已经安装过,还需要glob-all来选择要检测哪些文件里面的类名和id还有标签名称
 const globAll = require("glob-all");
 const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
+
+// 前端代码在浏览器运行,需要从服务器把html,css,js资源下载执行,下载的资源体积越小,页面加载速度就会越快。
+// 一般会采用gzip压缩,现在大部分浏览器和服务器都支持gzip,可以有效减少静态资源文件大小,压缩率在 70% 左右。
+
+// nginx可以配置gzip: on来开启压缩,但是只在nginx层面开启,会在每次请求资源时都对资源进行压缩,
+// 压缩文件会需要时间和占用服务器cpu资源，更好的方式是前端在打包的时候直接生成gzip资源,服务器接收到请求,
+// 可以直接把对应压缩好的gzip文件返回给浏览器,节省时间和cpu。
+const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = merge(baseConfig, {
   mode: "production", // 生产模式, 会开启tree-shaking和压缩代码,以及其他优化
   plugins: [
@@ -59,6 +67,14 @@ module.exports = merge(baseConfig, {
           pure_funcs: ["console.log"], // 删除console.log
         },
       },
+    }),
+    new CompressionPlugin({
+      test: /.(js|css)$/, // 只生成css,js压缩文件
+      filename: "[path][base].gz", // 文件命名
+      algorithm: "gzip", // 压缩格式,默认是gzip
+      test: /.(js|css)$/, // 只生成css,js压缩文件
+      threshold: 10240, // 只有大小大于该值的资源会被处理。默认值是 10k
+      minRatio: 0.8, // 压缩率,默认值是 0.8
     }),
   ],
   optimization: {

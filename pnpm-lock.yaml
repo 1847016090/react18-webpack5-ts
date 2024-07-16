@@ -14,6 +14,7 @@ specifiers:
   ansi-html-community: ^0.0.8
   autoprefixer: ^10.4.19
   babel-loader: ^9.1.3
+  compression-webpack-plugin: ^11.1.0
   copy-webpack-plugin: ^12.0.2
   core-js: ^3.37.1
   core-js-pure: ^3.37.1
@@ -64,6 +65,7 @@ devDependencies:
   ansi-html-community: 0.0.8
   autoprefixer: 10.4.19_postcss@8.4.39
   babel-loader: 9.1.3_ce2ekrksu4bikkggd5ymmdtq6i
+  compression-webpack-plugin: 11.1.0_webpack@5.93.0
   copy-webpack-plugin: 12.0.2_webpack@5.93.0
   core-js: 3.37.1
   core-js-pure: 3.37.1
@@ -2473,6 +2475,17 @@ packages:
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
+    dev: true
+
+  /compression-webpack-plugin/11.1.0_webpack@5.93.0:
+    resolution: {integrity: sha512-zDOQYp10+upzLxW+VRSjEpRRwBXJdsb5lBMlRxx1g8hckIFBpe3DTI0en2w7h+beuq89576RVzfiXrkdPGrHhA==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      webpack: ^5.1.0
+    dependencies:
+      schema-utils: 4.2.0
+      serialize-javascript: 6.0.2
+      webpack: 5.93.0_webpack-cli@5.1.4
     dev: true
 
   /compression/1.7.4:
