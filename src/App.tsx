@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import ClassComponent from "./components/Class";
+import ClassComponent from "@/components/Class";
 
-import smallImg from "./assets/imgs/5kb.png";
-import bigImg from "./assets/imgs/22kb.png";
+import smallImg from "@/assets/imgs/5kb.png";
+import bigImg from "@/assets/imgs/22kb.png";
 
-import "./app.less";
+import "@/app.less";
 
 function App() {
   const [count, setCounts] = useState("");

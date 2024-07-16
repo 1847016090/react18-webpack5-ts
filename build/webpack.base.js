@@ -86,6 +86,10 @@ module.exports = {
     // 所以要在extensions中配置，而第三方库里面很多引入js文件没有带后缀，所以也要配置下js
     // 修改webpack.base.js，注意把高频出现的文件后缀放在前面
     extensions: [".js", ".tsx", ".ts"],
+    // 设置别名alias,设置别名可以让后续引用的地方减少路径的复杂度
+    alias: {
+      "@": path.join(__dirname, "../src"),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
