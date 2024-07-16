@@ -1,5 +1,10 @@
 // webpack.dev.js
 const path = require("path");
+// webpack.dev.js
+// 现在开发模式下修改css和less文件，页面样式可以在不刷新浏览器的情况实时生效，因为此时样式都在style标签里面，
+// style-loader做了替换样式的热替换功能。但是修改App.tsx,浏览器会自动刷新后再显示修改后的内容,
+// 但我们想要的不是刷新浏览器,而是在不需要刷新浏览器的前提下模块热更新,并且能够保留react组件的状态。
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 // 合并配置
 const { merge } = require("webpack-merge");
@@ -18,4 +23,7 @@ module.exports = merge(baseConfig, {
       directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
     },
   },
+  plugins: [
+    new ReactRefreshWebpackPlugin(), // 添加热更新插件
+  ],
 });
