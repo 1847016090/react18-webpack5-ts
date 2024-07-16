@@ -29,6 +29,20 @@ module.exports = {
           },
         },
       },
+      {
+        // 从右往左,从下往上的,遇到less文件,使用less-loader解析为css
+        // 匹配到css文件后先用css-loader解析css, 最后借助style-loader把css插入到头部style标签中
+        test: /.(css|less)$/, //匹配 css和less 文件
+        use: [
+          "style-loader",
+          "css-loader",
+          // 新增
+          // postcss-loader：处理css时自动加前缀
+          // autoprefixer：决定添加哪些浏览器前缀到css中
+          "postcss-loader",
+          "less-loader",
+        ],
+      },
     ],
   },
   resolve: {
