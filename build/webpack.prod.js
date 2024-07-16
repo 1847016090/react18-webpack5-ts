@@ -11,6 +11,11 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 // 但是上面配置optimization.minimizer压缩css后,js压缩就失效了,需要手动再添加一下,
 // webpack内部安装了该插件,由于pnpm解决了幽灵依赖问题,如果用的pnpm的话,需要手动再安装一下依赖
 const TerserPlugin = require("terser-webpack-plugin");
+
+// s中会有未使用到的代码,css中也会有未被页面使用到的样式,可以通过purgecss-webpack-plugin插件打包的时候移除未使用到的css样式,
+// 这个插件是和mini-css-extract-plugin插件配合使用的,在上面已经安装过,还需要glob-all来选择要检测哪些文件里面的类名和id还有标签名称
+const globAll = require("glob-all");
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin");
 module.exports = merge(baseConfig, {
   mode: "production", // 生产模式, 会开启tree-shaking和压缩代码,以及其他优化
   plugins: [
@@ -29,6 +34,15 @@ module.exports = merge(baseConfig, {
     // 抽离css插件
     new MiniCssExtractPlugin({
       filename: "static/css/[name].[contenthash:8].css", // 抽离css的输出目录和名称
+    }),
+    // 清理无用css
+    new PurgeCSSPlugin({
+      // 检测src下所有tsx文件和public下index.html中使用的类名和id和标签名称
+      // 只打包这些文件中用到的样式
+      paths: globAll.sync([
+        `${path.join(__dirname, "../src")}/**/*.tsx`,
+        path.join(__dirname, "../public/index.html"),
+      ]),
     }),
     new TerserPlugin({
       // 压缩js
