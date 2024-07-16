@@ -27,6 +27,7 @@ module.exports = {
         // 由于thread-loader不支持抽离css插件MiniCssExtractPlugin.loader(下面会讲),所以这里只配置了多进程解析js,
         // 开启多线程也是需要启动时间,大约600ms左右,所以适合规模比较大的项目
         use: ["thread-loader", "babel-loader"],
+        include: [path.resolve(__dirname, "../src")], // 只对项目src文件的ts,tsx进行loader解析
       },
       {
         // 从右往左,从下往上的,遇到less文件,使用less-loader解析为css
