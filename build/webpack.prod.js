@@ -3,6 +3,7 @@ const path = require("path");
 const { merge } = require("webpack-merge");
 const CopyPlugin = require("copy-webpack-plugin");
 const baseConfig = require("./webpack.base.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = merge(baseConfig, {
   mode: "production", // 生产模式, 会开启tree-shaking和压缩代码,以及其他优化
   plugins: [
@@ -17,6 +18,10 @@ module.exports = merge(baseConfig, {
           },
         },
       ],
+    }),
+    // 抽离css插件
+    new MiniCssExtractPlugin({
+      filename: "static/css/[name].css", // 抽离css的输出目录和名称
     }),
   ],
 });
