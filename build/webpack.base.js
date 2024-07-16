@@ -14,6 +14,9 @@ module.exports = {
     clean: true, // webpack4 需要配置 clean-webpack-plugin 来删除 dist 文件,webpack5内置了
     publicPath: "/", // 打包后文件的公共前缀路径
   },
+  cache: {
+    type: "filesystem", // 使用文件缓存
+  },
   module: {
     rules: [
       {
