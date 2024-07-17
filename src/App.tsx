@@ -1,12 +1,12 @@
-import React, { Suspense, lazy, useState } from "react";
-import ClassComponent from "@/components/Class";
+import React, { Suspense, lazy, useState } from 'react'
+import ClassComponent from '@/components/Class'
 
-import smallImg from "@/assets/imgs/5kb.png";
-import bigImg from "@/assets/imgs/22kb.png";
+import smallImg from '@/assets/imgs/5kb.png'
+import bigImg from '@/assets/imgs/22kb.png'
 
-import { Demo1, Demo2 } from "@/components";
+import { Demo1, Demo2 } from '@/components'
 
-const LazyDemo = lazy(() => import("@/components/LazyDemo")); // 使用import语法配合react的Lazy动态引入资源
+const LazyDemo = lazy(() => import('@/components/LazyDemo')) // 使用import语法配合react的Lazy动态引入资源
 
 // 上面配置了资源懒加载后,虽然提升了首屏渲染速度,但是加载到资源的时候会有一个去请求资源的延时,
 // 如果资源比较大会出现延迟卡顿现象,可以借助link标签的rel属性prefetch与preload,link标签除了加载css之外也可以加载js资源,
@@ -21,9 +21,9 @@ const PreFetchDemo = lazy(
     import(
       /* webpackChunkName: "PreFetchDemo" */
       /*webpackPrefetch: true*/
-      "@/components/PreFetchDemo"
+      '@/components/PreFetchDemo'
     )
-);
+)
 
 // 在测试时发现只有js资源设置prefetch模式才能触发资源预加载,preload模式触发不了,
 // css和图片等资源不管设置prefetch还是preload都不能触发,不知道是哪里没配置好。
@@ -33,24 +33,24 @@ const PreloadDemo = lazy(
     import(
       /* webpackChunkName: "PreloadDemo" */
       /*webpackPreload: true*/
-      "@/components/PreloadDemo"
+      '@/components/PreloadDemo'
     )
-);
+)
 
-import "@/app.less";
+import '@/app.less'
 
 function App() {
-  const [count, setCounts] = useState("");
-  const [show, setShow] = useState(false);
+  const [count, setCounts] = useState('')
+  const [show, setShow] = useState(false)
   const onChange = (e: any) => {
-    setCounts(e.target.value);
-  };
+    setCounts(e.target.value)
+  }
   // 点击事件中动态引入css, 设置show为true
   const onClick = () => {
     // import("./app.css");
-    setShow(true);
-  };
-  console.log("111", 111);
+    setShow(true)
+  }
+  console.log('111', 111)
   return (
     <>
       <h2 onClick={onClick}>展示</h2>
@@ -70,18 +70,18 @@ function App() {
       )}
       <h2>webpack5-react-ts修改1111</h2>
       <ClassComponent />
-      <img src={smallImg} alt="小于10kb的图片" />
-      <img src={bigImg} alt="大于于10kb的图片" />
-      <div className="smallImg"></div> {/* 小图片背景容器 */}
-      <div className="bigImg"></div> {/* 大图片背景容器 */}
+      <img src={smallImg} alt='小于10kb的图片' />
+      <img src={bigImg} alt='大于于10kb的图片' />
+      <div className='smallImg'></div> {/* 小图片背景容器 */}
+      <div className='bigImg'></div> {/* 大图片背景容器 */}
       <h2>组件</h2>
       <p>受控组件</p>
-      <input type="text" value={count} onChange={onChange} />
+      <input type='text' value={count} onChange={onChange} />
       <br />
       <p>非受控组件</p>
-      <input type="text" />
+      <input type='text' />
       <Demo1 />
     </>
-  );
+  )
 }
-export default App;
+export default App
