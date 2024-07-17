@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksub_webpack_react_micro_app=self.webpackChunksub_webpack_react_micro_app||[]).push([[854],{8854:function(e,c,a){a.r(c);var u=a(758);c.default=function(){return u.createElement("h3",null,"我是懒加载组件组件")}}}]);
