@@ -18,7 +18,8 @@ export default [
       }
     },
     rules: {
-      '@typescript-eslint/ban-types': 0
+      '@typescript-eslint/ban-types': 0,
+      'constructor-super': 0
     },
     ignores: ['dist', 'node_modules']
   }
