@@ -51,8 +51,11 @@ function App() {
     setShow(true)
   }
 
-  // const a = 2
+  const test = (data: number) => {
+    console.log('data', data)
+  }
 
+  test(11)
   console.log('111', 111)
   return (
     <>
