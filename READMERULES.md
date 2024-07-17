@@ -186,7 +186,7 @@ pnpm i eslint -D
 
 ### 6.3 配置.eslintrc.js 文件
 
-安装**eslint**后，执行**pnpm init @eslint/config**，选择自己需要的配置
+安装**eslint**后，执行**pnpm create @eslint/config**，选择自己需要的配置
 
 ![WX20220521-120554@2x.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f6e563a56a7a4948a2897d9beec93e93~tplv-k3u1fbpfcp-watermark.image?)
 
